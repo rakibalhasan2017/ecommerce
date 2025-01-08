@@ -11,7 +11,7 @@ const ProductSchema = new mongoose.Schema(
       required: [true, "Please provide product description"], // Email is required
     },
     isfeatured: {
-      type: boolean,
+      type: Boolean,
       default: false,
     },
     price: {
