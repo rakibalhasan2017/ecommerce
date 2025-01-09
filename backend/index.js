@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
 import authroutes from './Routes/authroutes.js';
 import productroutes from './Routes/productroutes.js';
+import cartroutes from './Routes/cartroutes.js';
 
 dotenv.config();
 const app = express();
@@ -15,6 +16,7 @@ console.log(PORT);
 
 app.use("/api/auth", authroutes);
 app.use("/api/product", productroutes);
+app.use("/api/cart", cartroutes);
 
 mongoose.connect(MONGODB_URL)
 .then(() => {

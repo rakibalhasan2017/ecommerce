@@ -5,7 +5,7 @@ import {
   deleteproduct,
   createproduct,
   getrecommendedproduct,
-  getproductbycategorym,
+  getproductbycategory,
   togglefeaturedproduct,
 } from "../controllers/productcontroller.js";
 import { protectedroute, adminroute } from "../middleware/authmiddleware.js";
