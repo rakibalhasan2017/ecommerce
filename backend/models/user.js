@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       required: true,
-      minlength: [6, "password must be at least 6"], // Minimum length for the password
+      minlength: [3, "password must be at least 3"], // Minimum length for the password
     },
     cartitems: [
       {

@@ -5,6 +5,8 @@ import cloudinary from "../lib/cloudinary.js";
 export const getallproduct = async (req, res) => {
   try {
     const products = await Product.find({});
+   // console.log("All products fetched successfully");
+    //console.log(products);
     res.json(products);
   } catch (error) {
     console.error(error.message);
@@ -16,7 +18,7 @@ export const getallproduct = async (req, res) => {
 
 export const getfeateuredproduct = async (req, res) => {
   try {
-    const featuredproducts = await redis.get("featuredproducts");
+    let featuredproducts = await redis.get("featuredproducts");
     if (featuredproducts) {
       return res.json(JSON.parse(featuredproducts));
     }
@@ -38,24 +40,27 @@ export const getfeateuredproduct = async (req, res) => {
 
 export const createproduct = async (req, res) => {
   try {
-    const { name, description, price, category, isfeatured, image } = req.body;
-    const cloudinaryresponse = null;
+    const { name, description, price, category, image } = req.body;
+    //console.log("Product details received successfully");
+    let cloudinaryresponse = null;
     if (image) {
       cloudinaryresponse = await cloudinary.uploader.upload(image, {
         folder: "products",
       });
     }
-    const result = await cloudinary.uploader.upload(req.file.path);
+   // console.log("Image uploaded successfully");
     const product = new Product({
       name,
       description,
       price,
       category,
-      isfeatured,
       image: cloudinaryresponse?.secure_url
         ? cloudinaryresponse.secure_url
         : "",
+        isfeatured: false,
     });
+   // console.log("Product created successfully");
+    //console.log(product);
     await product.save();
     res.json(product);
   } catch (error) {
@@ -85,6 +90,7 @@ export const deleteproduct = async (req, res) => {
       }
     }
     await Product.findByIdAndDelete(req.params.id);
+   // console.log(product);
     res.json({ message: "Product removed successfully" });
   } catch (error) {
     console.error(error.message);
@@ -154,7 +160,9 @@ export const togglefeaturedproduct = async (req, res) => {
 
 async function updatefeaturedproducts() {
   try {
-    const featuredproducts = await Product.find({ isFeatured: true });
+    const featuredproducts = await Product.find({ isfeatured: true });
+    console.log("Featured products updated successfully");
+    console.log(featuredproducts);
     await redis.set("featuredproducts", JSON.stringify(featuredproducts));
   } catch (error) {
     console.error(error.message);

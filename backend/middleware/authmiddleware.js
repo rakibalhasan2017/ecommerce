@@ -1,11 +1,11 @@
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import User from '../models/user.js';
+import { login } from '../controllers/authcontroller.js';
 dotenv.config();
 
 export const protectedroute = async (req, res, next) => {
     const token = req.cookies.accesstoken;
-
     if (!token) {
         return res.status(401).json({ message: 'Not authorized, no token in the protectedroute' });
     }
@@ -16,6 +16,7 @@ export const protectedroute = async (req, res, next) => {
             return res.status(404).json({ message: 'No user found with this id in the protectedroute' });
         }
         req.user = user;
+        console.log('Protected route accessed');
         next();
     } catch (error) {
         res.status(401).json({ message: 'Not authorized, token failed in the protectedroute' });
@@ -25,6 +26,7 @@ export const protectedroute = async (req, res, next) => {
 
 export const adminroute = async (req, res, next) => {
     if (req.user && req.user.role === 'admin') {
+        console.log('Admin route accessed');
         next();
     } else {
         res.status(401).json({ message: 'Not authorized as an admin in the adminroute' });

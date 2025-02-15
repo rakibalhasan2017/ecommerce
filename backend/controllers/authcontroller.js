@@ -100,6 +100,8 @@ export const login = async (req, res) => {
             return res.status(400).json({ message: "Invalid password" });
         }
         const { accesstoken, refreshtoken } = generatetoken(user._id);
+       // console.log("accesstoken", accesstoken);
+        //console.log("refreshtoken", refreshtoken);
         setcookies(res, refreshtoken, accesstoken);
         await storerefreshtoken(user._id, refreshtoken);
         res.status(200).json({
@@ -109,7 +111,7 @@ export const login = async (req, res) => {
             email: user.email,
             role: user.role,
         });
-        
+        console.log("Logged in successfully");
     } catch (error) {
         console.error(error.message);
         res.status(500).json({message:"Something went wrong in the login controller, CHECK THE LOGIN CONTROLLER",});

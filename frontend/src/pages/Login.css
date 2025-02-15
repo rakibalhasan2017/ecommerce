@@ -1,0 +1,94 @@
+@import "/node_modules/@fortawesome/fontawesome-free/css/all.min.css"; /* Font Awesome */
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #0f172a;
+  color: #ffffff;
+}
+
+.login-form {
+  background-color: #1e293b;
+  padding: 30px;
+  border-radius: 10px;
+  width: 400px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.login-title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #22c55e; /* Green */
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  margin-bottom: 5px;
+  color: #94a3b8;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #64748b;
+  border-radius: 5px;
+  background-color: #334155;
+  color: #ffffff;
+}
+
+.form-group input::placeholder {
+  color: #94a3b8;
+}
+
+.login-button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #22c55e;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.login-button:hover {
+  background-color: #16a34a;
+}
+
+.login-footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #94a3b8;
+}
+
+.login-footer a {
+  color: #22c55e;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.login-footer a:hover {
+  color: #16a34a;
+}
+
+.error-message {
+  color: #ef4444; /* Red */
+  font-size: 14px;
+  margin-bottom: 10px;
+  text-align: center;
+}
