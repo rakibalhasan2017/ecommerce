@@ -56,6 +56,7 @@ const useProductStore = create((set, get) => ({
       console.error("Error toggling featured product:", error);
     }
   },
+
   deleteProduct: async (productId) => {
     try {
       // Send DELETE request to the backend
@@ -70,6 +71,7 @@ const useProductStore = create((set, get) => ({
       console.error("Error deleting product:", error);
     }
   },
+ 
 
   // Delete product function
  
