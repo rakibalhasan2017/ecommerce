@@ -42,21 +42,6 @@ const useProductStore = create((set, get) => ({
     }
   },
 
-  toggleFeatured: async (productId) => {
-    try {
-      await axios.put(`http://localhost:5000/api/product/${productId}`, null, { withCredentials: true });
-      set((state) => ({
-        products: state.products.map((product) =>
-          product._id === productId
-            ? { ...product, isFeatured: !product.isFeatured }
-            : product
-        ),
-      }));
-    } catch (error) {
-      console.error("Error toggling featured product:", error);
-    }
-  },
-
   deleteProduct: async (productId) => {
     try {
       // Send DELETE request to the backend
